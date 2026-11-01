@@ -1,1 +1,28 @@
-{% extends 'journal/base.html' %}{% block content %}<h2>Welcome, {{ member.username }}</h2><p>Write and organize your private thoughts.</p>{% for entry in entries %}<article><h3>{{ entry.title }}</h3><p>{{ entry.body|linebreaksbr }}</p><a href="{% url 'edit_entry' entry.id %}">Edit</a> <form method="post" class="inline" action="{% url 'delete_entry' entry.id %}">{% csrf_token %}<button>Delete</button></form></article>{% empty %}<p>No entries yet. Create one!</p>{% endfor %}{% endblock %}
+{% extends 'journal/base.html' %}
+
+{% block content %}
+    <h2>Welcome, {{ member.username }}</h2>
+
+    <p>Write and organize your private thoughts.</p>
+
+    {% for entry in entries %}
+        <article>
+            <h3>{{ entry.title }}</h3>
+
+            <p>{{ entry.body|linebreaksbr }}</p>
+
+            <a href="{% url 'edit_entry' entry.id %}">Edit</a>
+
+            <form
+                method="post"
+                class="inline"
+                action="{% url 'delete_entry' entry.id %}"
+            >
+                {% csrf_token %}
+                <button>Delete</button>
+            </form>
+        </article>
+    {% empty %}
+        <p>No entries yet. Create one!</p>
+    {% endfor %}
+{% endblock %}

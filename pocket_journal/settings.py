@@ -1,7 +1,8 @@
+import os
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'local-coursework-only-change-before-deployment'
-DEBUG = True  # local lab ONLY
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+DEBUG = True  
 ALLOWED_HOSTS = ['localhost','127.0.0.1','testserver']
 INSTALLED_APPS = ['django.contrib.contenttypes','django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles','journal']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware','django.contrib.sessions.middleware.SessionMiddleware','django.middleware.common.CommonMiddleware','django.middleware.csrf.CsrfViewMiddleware','django.contrib.messages.middleware.MessageMiddleware']
@@ -11,7 +12,7 @@ DATABASES = {'default': {'ENGINE':'django.db.backends.sqlite3','NAME':BASE_DIR/'
 SESSION_COOKIE_HTTPONLY = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = 'static/'
-# A09 FIX SUPPORT: log to console and local rotating file (uncomment with A09 view fix)
+# A09 FIX SUPPORT: log to console and local rotating file 
 # LOGGING = {
 #     'version': 1, 'disable_existing_loggers': False,
 #     'formatters': {'security': {'format': '%(asctime)s %(levelname)s %(message)s'}},

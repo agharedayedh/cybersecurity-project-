@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pocket Journal</title>
+
+    <style>
+        body {
+            font: 16px system-ui, sans-serif;
+            max-width: 760px;
+            margin: 36px auto;
+            padding: 0 18px;
+            color: #202735;
+            background: #f7f9fc;
+        }
+
+        header, article, main {
+            background: white;
+            padding: 18px 24px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 5px #ccd3df;
+        }
+
+        a {
+            color: #1456a0;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        input, textarea {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 8px 0 16px;
+            padding: 10px;
+            border: 1px solid #aab5c2;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 9px 14px;
+            border: 0;
+            border-radius: 6px;
+            background: #1656a5;
+            color: white;
+            cursor: pointer;
+        }
+
+        .inline {
+            display: inline;
+        }
+
+        small {
+            color: #667;
+        }
+
+        .error {
+            color: #b32424;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Pocket Journal</h1>
+
+        <nav>
+            <a href="{% url 'home' %}">My entries</a>
+            <a href="{% url 'new_entry' %}">New entry</a>
+            <a href="{% url 'search' %}">Search</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+
+            <form class="inline" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button>Log out</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        {% for message in messages %}
+            <p class="error">{{ message }}</p>
+        {% endfor %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

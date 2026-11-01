@@ -1,1 +1,27 @@
-{% extends 'journal/base.html' %}{% block content %}<h2>{{ heading }}</h2><form method="post">{% csrf_token %}<label for="title">Title</label><input id="title" name="title" maxlength="150" value="{{ entry.title|default:'' }}" required><label for="body">Entry</label><textarea id="body" name="body" rows="8">{{ entry.body|default:'' }}</textarea><button>Save</button></form>{% endblock %}
+{% extends 'journal/base.html' %}
+
+{% block content %}
+    <h2>{{ heading }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="title">Title</label>
+        <input
+            id="title"
+            name="title"
+            maxlength="150"
+            value="{{ entry.title|default:'' }}"
+            required
+        >
+
+        <label for="body">Entry</label>
+        <textarea
+            id="body"
+            name="body"
+            rows="8"
+        >{{ entry.body|default:'' }}</textarea>
+
+        <button>Save</button>
+    </form>
+{% endblock %}

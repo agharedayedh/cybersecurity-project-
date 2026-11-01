@@ -1,0 +1,1 @@
+{% extends 'journal/base.html' %}{% block content %}<h2>{{ heading }}</h2><form method="post">{% csrf_token %}{% for field in fields %}<label for="{{ field }}">{{ field|title }}</label><input id="{{ field }}" name="{{ field }}" {% if field == 'password' %}type="password"{% else %}type="text"{% endif %} required>{% endfor %}<button>{{ heading }}</button></form>{% endblock %}

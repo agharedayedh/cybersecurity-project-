@@ -70,8 +70,11 @@
 <body>
     <header>
         <h1>Pocket Journal</h1>
-
+        
         <nav>
+            {% if request.session.member_id %}
+                <span>Logged in as: {{ request.session.username }}</span>
+            {% endif %}
             <a href="{% url 'home' %}">My entries</a>
             <a href="{% url 'new_entry' %}">New entry</a>
             <a href="{% url 'search' %}">Search</a>

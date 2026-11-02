@@ -56,6 +56,7 @@ def login_view(request):
             # cache.delete(throttle_key)
             request.session.flush()
             request.session['member_id'] = member.pk
+            request.session['username'] = member.username
             return redirect('home')
         # A07 FIX: increment failed-attempt counter with a 15-minute expiry:
         # cache.set(throttle_key, failures + 1, timeout=900)
